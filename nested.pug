@@ -1,0 +1,40 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Container Queries
+  script.
+    document.documentElement.className = 'js';
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;500&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='src/css/nested.scss')
+  script(src='src/js/nested.js' defer='')
+
+header.header
+  h1.header__title Nested CSS @container
+
+main.layout
+  .layout-wrapper
+    .layout__top(data-width='')
+      .data Superior >700
+        span
+    .layout__left(data-width='')
+      .data Izquierda <250
+        span
+    .layout__right(data-width='')
+      .data Derecha >500
+        span
+
+footer.footer
+  h2.footer__title Los colores de fondo cambian de colores, según:
+  ul.footer__list
+    li.footer__list-item Principal: cuando su ancho sea superior a 700px
+    li.footer__list-item IZQUIERDA: cuando su ancho sea superior a 250px
+    li.footer__list-item DERECHA: cuando su ancho sea superior a 500px
+  h2.footer__title Existen tres @container definidos 
+  ul.footer__list
+    li Uno que contiene las 3 capas 
+    li Los otros dos están dentro del @container principal, y son los que están abajo, en la misma fila
+  img(src="src/img/container.png", alt="")

@@ -1,0 +1,146 @@
+@mixin reset-list() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin unordered-list-bullet($margin-left: 0, $font-size: 18px) {
+  @include reset-list();
+  margin-left: $margin-left;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  li {
+      padding-left: .6em;
+      position: relative;
+      font-size: $font-size;
+      &::before {
+          content: '·';
+          width: .6em;
+          display: inline-block;
+          position: absolute;
+          left: 0;
+      }
+  }
+}
+
+:root {
+  --color-0: #2c2c2c;
+  --color-1: #D9594C;
+  --color-2: #B7B868;
+  --color-3: #CE8D66;
+  --color-4: #b1b1b1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  font-family: "Barlow", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--color-0);
+  background-color: var(--color-4);
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  font-size: unset;
+  font-weight: unset;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+img {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.header {
+  &__title {
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    line-height: 1.1;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+}
+.footer {
+  padding: 1rem .7rem;
+  &__title {
+    padding-bottom: .7rem;
+  }
+  &__list {
+    @include unordered-list-bullet(10px, 16px);
+    padding-bottom: .7rem;
+  }
+}
+
+.layout {
+  contain: layout inline-size style;
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    text-align: center;
+    > * {
+      box-shadow: 0 0 2px #fff;
+    }
+    //place-items: center; //esto rompe el sistema @container
+  }
+  &__top {
+    grid-column: 1 / -1;
+  }
+  &__left {
+    contain: layout inline-size style;
+  }
+  &__right {
+    contain: layout inline-size style;
+  }
+  .data {
+    padding: .6rem;
+  }
+  span {
+    font-weight: 500;
+    display: block;
+  }
+
+}
+
+
+
+@container (min-width: 700px) {
+  .layout {
+    &__top {
+      background-color: var(--color-1);
+    }
+  }
+}
+@container (max-width: 250px) {
+  .layout {
+    &__left {
+      div {
+        background-color: var(--color-2);
+      }
+    }
+  }
+}
+@container (min-width: 500px) {
+  .layout {
+    &__right {
+      div {
+        background-color: var(--color-3);
+      }
+    }
+  }
+}
