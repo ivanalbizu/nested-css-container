@@ -1,3 +1,9 @@
+## Run code
+
+```bash
+parcel nested.pug
+```
+
 ## Nested CSS @container
 
 Estoy haciendo pruebas con una nueva feature de CSS, se llama @container. Todavía no está implementada en los navegadores actuales, pero es posible probar en Chrome Canary o en Brave.
